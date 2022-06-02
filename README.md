@@ -6,7 +6,7 @@ A skeleton for writing Go CLI applications.
 
 - global logging via [zerolog](https://github.com/rs/zerolog) (json and human friendly)
 - simple HTTP client with `GET` and `POST` functions via `net/http` package returning dynamic JSON
-- reading and writng files
+- reading and writing files
 - CLI commands, parameters and flags via [Kong](https://github.com/alecthomas/kong)
 - flat file structure and one package
 
