@@ -15,7 +15,8 @@ func main() {
 	cli := CLI{}
 	ctx := kong.Parse(&cli,
 		kong.Name("go-cli-skeleton"),
-		kong.Description("A minimal skeleton for building CLI apps"))
+		kong.Description("A minimal skeleton for building CLI apps"),
+		kong.UsageOnError())
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	if cli.Debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
