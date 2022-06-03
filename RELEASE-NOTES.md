@@ -2,6 +2,12 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.2.0
+
+### Changed
+
+- arguments fir file-reading and file-writing required
+
 ## 0.1.0
 
 ### Added

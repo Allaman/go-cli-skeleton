@@ -25,7 +25,7 @@ func (c *versionCmd) Run() error {
 }
 
 type readFileCmd struct {
-	Path string `short:"p" help:"Path to the file to be read"`
+	Path string `short:"p" required:"" help:"Path to the file to be read"`
 }
 
 func (c *readFileCmd) Run() error {
@@ -40,8 +40,8 @@ func (c *readFileCmd) Run() error {
 }
 
 type writeFileCmd struct {
-	Path    string `short:"p" help:"Path to the file to be written"`
-	Content string `short:"c" help:"Content to be written to the file"`
+	Path    string `short:"p" required:"" help:"Path to the file to be written"`
+	Content string `short:"c" required:"" help:"Content to be written to the file"`
 }
 
 func (c *writeFileCmd) Run() error {
