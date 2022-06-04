@@ -1,0 +1,26 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint Markdown files
+        uses: actionshub/markdownlint@2.0.2
+  go:
+    run-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.18
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Install dependencies
+        run: go mod tidy
+      - name: Run go vet
+        run: go vet $(go list ./...)
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+      - name: Run testing
+        run: go test
