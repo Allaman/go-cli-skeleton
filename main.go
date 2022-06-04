@@ -5,7 +5,6 @@ import (
 
 	"github.com/alecthomas/kong"
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 )
 
 // will be overwritten in release pipeline
@@ -17,21 +16,21 @@ func main() {
 		kong.Name("go-cli-skeleton"),
 		kong.Description("A minimal skeleton for building CLI apps"),
 		kong.UsageOnError())
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	GL = NewLogger(zerolog.InfoLevel)
 	if cli.Debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	}
 	if !cli.JsonOutput {
-		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+		*GL.logger = GL.logger.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	}
 	err := ctx.Run(&cli)
 	if err != nil {
-		log.Fatal().Err(err).Msg("Shit is on fire")
+		GL.logger.Fatal().Err(err).Msg("Shit is on fire")
 	}
 }
 
 func sayHello(pw, addr string) error {
-	log.Info().Msg("Hello")
-	log.Debug().Str("PW", pw).Str("Addr", addr).Msg("You are curious!")
+	GL.logger.Info().Msg("Hello")
+	GL.logger.Debug().Str("PW", pw).Str("Addr", addr).Msg("You are curious!")
 	return nil
 }

@@ -8,8 +8,8 @@ import (
 	"github.com/rs/zerolog"
 )
 
-// Log is the global Logger instance
-var Log *Logger
+// GL is the global Logger instance
+var GL *Logger
 
 // Logger containing a zerolog logger ptr
 type Logger struct {
