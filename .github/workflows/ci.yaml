@@ -10,7 +10,7 @@ jobs:
       - name: Lint Markdown files
         uses: actionshub/markdownlint@2.0.2
   go:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.18
         uses: actions/setup-go@v2
