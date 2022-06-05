@@ -21,7 +21,7 @@ jobs:
         run: go vet $(go list ./...)
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
-      - name: Install dependencies
-        run: go mod tidy
+      # - name: Install dependencies
+      #   run: go mod tidy
       - name: Run testing
         run: go test
