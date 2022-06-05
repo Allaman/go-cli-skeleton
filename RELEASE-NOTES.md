@@ -2,6 +2,16 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.3.0
+
+### Changed
+
+- `file` command for file operations replacing `read-file` and `write-file`
+
+### Added
+
+- support for reading from stdin for writing content to a file
+
 ## 0.2.0
 
 ### Changed
