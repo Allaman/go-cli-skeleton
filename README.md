@@ -1,20 +1,21 @@
-# go-cli-skeleton
+# Go CLI Skeleton
 
-A skeleton for writing Go CLI applications.
+A skeleton/template for writing Go CLI applications.
 
 ## What's included
 
-- global logging via [zerolog](https://github.com/rs/zerolog) (json and human friendly)
+- global logging via [zerolog](https://github.com/rs/zerolog) (JSON and human friendly)
 - simple HTTP client via `net/http` package returning dynamic JSON
-- reading files
-- writing files
-- reading from stdin (e.g. Linux pipe)
+- reading a file
+- writing to a file
+- reading from stdin (e.g. a Linux pipe)
 - CLI commands, parameters and flags via [Kong](https://github.com/alecthomas/kong)
-- flat file structure and one package
+- only main package
 
 ## What's not included
 
 - sophisticated HTTP client
+- parsing yaml, json, ... files
 - modular file structure ([project-layout](https://github.com/golang-standards/project-layout))
 - tests 😬
 
