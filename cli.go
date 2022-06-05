@@ -5,14 +5,16 @@ import (
 )
 
 type CLI struct {
-	Hello      helloCmd     `cmd:"" default:"1" help:"default command"`
-	Get        httpGET      `cmd:"" help:"GET query to postman echo"`
-	Post       httpPOST     `cmd:"" help:"POST query to postman echo"`
-	ReadFile   readFileCmd  `cmd:"" help:"Read a file"`
-	WriteFile  writeFileCmd `cmd:"" help:"Write a file"`
-	Version    versionCmd   `cmd:"" help:"Show version information"`
-	Debug      bool         `short:"d" help:"Enable debug output"`
-	JsonOutput bool         `short:"j" default:"false" help:"Log in json format"`
+	Hello      helloCmd   `cmd:"" default:"1" help:"default command"`
+	Get        httpGET    `cmd:"" help:"GET query to postman echo"`
+	Post       httpPOST   `cmd:"" help:"POST query to postman echo"`
+	Version    versionCmd `cmd:"" help:"Show version information"`
+	Debug      bool       `short:"d" help:"Enable debug output"`
+	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
+	File       struct {
+		Read  readFileCmd  `cmd:"" help:"Read a file"`
+		Write writeFileCmd `cmd:"" help:"Write a file"`
+	} `cmd:"" help:"File operations"`
 }
 
 type versionCmd struct {
@@ -41,11 +43,11 @@ func (c *readFileCmd) Run() error {
 
 type writeFileCmd struct {
 	Path    string `short:"p" required:"" help:"Path to the file to be written"`
-	Content string `short:"c" required:"" help:"Content to be written to the file"`
+	Content string `short:"c" help:"Content to be written to the file (stdin also works)"`
 }
 
 func (c *writeFileCmd) Run() error {
-	return writeFile([]byte(c.Content), c.Path)
+	return writeBytesToFile([]byte(c.Content), c.Path)
 }
 
 type helloCmd struct {

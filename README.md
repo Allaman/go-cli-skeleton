@@ -6,14 +6,16 @@ A skeleton for writing Go CLI applications.
 
 - global logging via [zerolog](https://github.com/rs/zerolog) (json and human friendly)
 - simple HTTP client via `net/http` package returning dynamic JSON
-- reading and writing files
+- reading files
+- writing files
+- reading from stdin (e.g. Linux pipe)
 - CLI commands, parameters and flags via [Kong](https://github.com/alecthomas/kong)
 - flat file structure and one package
 
 ## What's not included
 
-- sophisticated HTTP client (with tracing for instance)
-- file structure for more complex apps ([project-layout](https://github.com/golang-standards/project-layout))
+- sophisticated HTTP client
+- modular file structure ([project-layout](https://github.com/golang-standards/project-layout))
 - tests 😬
 
 ```sh
@@ -37,14 +39,14 @@ Commands:
   post
     POST query to postman echo
 
-  read-file
-    Read a file
-
-  write-file
-    Write a file
-
   version
     Show version information
+
+  file read --path=STRING
+    Read a file
+
+  file write --path=STRING
+    Write a file
 
 Run "go-cli-skeleton <command> --help" for more information on a command.
 ```
