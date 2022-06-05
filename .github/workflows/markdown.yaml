@@ -2,11 +2,9 @@ name: Markdown
 
 on: [push, pull_request]
 
-defaults:
-  runs-on: ubuntu-latest
-
 jobs:
   markdown:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Lint Markdown files
