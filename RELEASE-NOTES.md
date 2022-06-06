@@ -2,6 +2,13 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.3.1
+
+### Changed
+
+- reorder command order (cosmetic)
+- bump go version to 1.18
+
 ## 0.3.0
 
 ### Changed
