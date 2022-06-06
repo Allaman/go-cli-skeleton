@@ -2,6 +2,16 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.4.0
+
+### Added
+
+- JSON parsing via [gjson](https://github.com/tidwall/gjson) and unmarshalling
+
+### Changed
+
+- Concise naming
+
 ## 0.3.1
 
 ### Changed

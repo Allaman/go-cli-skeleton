@@ -7,8 +7,6 @@ import (
 	"io"
 	"net/http"
 	"time"
-
-	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -20,6 +18,9 @@ func get(path string) (*http.Response, error) {
 	resp, err := c.Get(fmt.Sprintf("%s%s", baseURL, path))
 	if err != nil {
 		return nil, err
+	}
+	if !isHTTPResponseCode200(resp) {
+		GL.logger.Warn().Msgf("statuscode was '%d'", resp.StatusCode)
 	}
 	return resp, nil
 }
@@ -33,13 +34,13 @@ func post(path string, body interface{}) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
+	if !isHTTPResponseCode200(resp) {
+		GL.logger.Warn().Msgf("statuscode was '%d'", resp.StatusCode)
+	}
 	return resp, nil
 }
 
 func getJSONFromHTTPResponse(resp *http.Response) ([]byte, error) {
-	if resp.StatusCode != 200 {
-		log.Warn().Msgf("statuscode was '%d'", resp.StatusCode)
-	}
 	b, err := io.ReadAll(resp.Body)
 	defer resp.Body.Close()
 	if err != nil {
@@ -55,4 +56,8 @@ func printHTTPResponse(resp *http.Response) error {
 	}
 	fmt.Println(string(data))
 	return nil
+}
+
+func isHTTPResponseCode200(resp *http.Response) bool {
+	return resp.StatusCode == 200
 }

@@ -5,23 +5,24 @@ import (
 )
 
 type CLI struct {
-	Hello helloCmd `cmd:"" default:"1" help:"default command"`
-	Get   httpGET  `cmd:"" help:"GET query to postman echo"`
-	Post  httpPOST `cmd:"" help:"POST query to postman echo"`
+	Hello helloCmd    `cmd:"" default:"1" help:"default command"`
+	Get   httpGETCMD  `cmd:"" help:"GET query to postman-echo and printing response"`
+	Post  httpPOSTCMD `cmd:"" help:"POST query to postman-echo and printing response"`
 	File  struct {
 		Read  readFileCmd  `cmd:"" help:"Read a file"`
 		Write writeFileCmd `cmd:"" help:"Write a file"`
 	} `cmd:"" help:"File operations"`
-	Version    versionCmd `cmd:"" help:"Show version information"`
+	Parse      ParseCMD   `cmd:"" help:"GET query to poastman-echo and parsing the response"`
+	Version    VersionCmd `cmd:"" help:"Show version information"`
 	Debug      bool       `short:"d" help:"Enable debug output"`
 	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
 }
 
-type versionCmd struct {
+type VersionCmd struct {
 	Version string
 }
 
-func (c *versionCmd) Run() error {
+func (c *VersionCmd) Run() error {
 	fmt.Println(Version)
 	return nil
 }
@@ -59,9 +60,25 @@ func (c *helloCmd) Run() error {
 	return sayHello(c.Password, c.Addr)
 }
 
-type httpGET struct{}
+type ParseCMD struct{}
 
-func (c *httpGET) Run() error {
+func (c *ParseCMD) Run() error {
+	return func() error {
+		err := parseDynamicJSON()
+		if err != nil {
+			return err
+		}
+		err = parsePostmanGETResponse()
+		if err != nil {
+			return err
+		}
+		return nil
+	}()
+}
+
+type httpGETCMD struct{}
+
+func (c *httpGETCMD) Run() error {
 	return func() error {
 		resp, err := get("/get?foo1=bar1&foo2=bar2")
 		if err != nil {
@@ -71,9 +88,9 @@ func (c *httpGET) Run() error {
 	}()
 }
 
-type httpPOST struct{}
+type httpPOSTCMD struct{}
 
-func (c *httpPOST) Run() error {
+func (c *httpPOSTCMD) Run() error {
 	return func() error {
 		resp, err := post("/post", map[string]string{"foo": "bar"})
 		if err != nil {
