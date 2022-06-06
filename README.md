@@ -40,14 +40,15 @@ Commands:
   post
     POST query to postman echo
 
-  version
-    Show version information
 
   file read --path=STRING
     Read a file
 
   file write --path=STRING
     Write a file
+
+  version
+    Show version information
 
 Run "go-cli-skeleton <command> --help" for more information on a command.
 ```
