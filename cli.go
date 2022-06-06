@@ -5,16 +5,16 @@ import (
 )
 
 type CLI struct {
-	Hello      helloCmd   `cmd:"" default:"1" help:"default command"`
-	Get        httpGET    `cmd:"" help:"GET query to postman echo"`
-	Post       httpPOST   `cmd:"" help:"POST query to postman echo"`
-	Version    versionCmd `cmd:"" help:"Show version information"`
-	Debug      bool       `short:"d" help:"Enable debug output"`
-	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
-	File       struct {
+	Hello helloCmd `cmd:"" default:"1" help:"default command"`
+	Get   httpGET  `cmd:"" help:"GET query to postman echo"`
+	Post  httpPOST `cmd:"" help:"POST query to postman echo"`
+	File  struct {
 		Read  readFileCmd  `cmd:"" help:"Read a file"`
 		Write writeFileCmd `cmd:"" help:"Write a file"`
 	} `cmd:"" help:"File operations"`
+	Version    versionCmd `cmd:"" help:"Show version information"`
+	Debug      bool       `short:"d" help:"Enable debug output"`
+	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
 }
 
 type versionCmd struct {
