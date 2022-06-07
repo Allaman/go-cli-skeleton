@@ -1,21 +1,12 @@
 package main
 
 import (
-	"io"
 	"os"
 )
 
 func isInputFromPipe() bool {
 	fileInfo, _ := os.Stdin.Stat()
 	return fileInfo.Mode()&os.ModeCharDevice == 0
-}
-
-func readFromStdintoByte() ([]byte, error) {
-	stdin, err := io.ReadAll(os.Stdin)
-	if err != nil {
-		return nil, err
-	}
-	return stdin, nil
 }
 
 // exists returns whether the given file or directory exists

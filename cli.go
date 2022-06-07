@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"os"
 )
 
 type CLI struct {
@@ -48,7 +50,14 @@ type writeFileCmd struct {
 }
 
 func (c *writeFileCmd) Run() error {
-	return writeBytesToFile([]byte(c.Content), c.Path)
+	return func() error {
+		if isInputFromPipe() {
+			GL.logger.Info().Msg("reading from pipe")
+			return writeToFile(os.Stdin, c.Path)
+		} else {
+			return writeToFile(bytes.NewBufferString(c.Content), c.Path)
+		}
+	}()
 }
 
 type helloCmd struct {

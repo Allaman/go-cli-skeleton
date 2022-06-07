@@ -2,6 +2,17 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.4.1
+
+### Changed
+
+- renamed `writeBytesToFile` to `writeToFile`
+- `writeToFile` accepts an `io.Reader` and does not decide whether input is from stdin (no side effects regarding that)
+
+### Removed
+
+- `readFromStdintoByte` is now obsolet
+
 ## 0.4.0
 
 ### Added

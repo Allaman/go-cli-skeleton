@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -16,24 +17,14 @@ func readFile(path string) ([]byte, error) {
 	return dat, nil
 }
 
-// writeBytesToFile creates a new file and writes content
+// writeToFile creates a new file and writes content
 // provided by parameter or stdin
 // When the file exists it aborts
 // When the content is empty the created file is also empty
-func writeBytesToFile(data []byte, path string) error {
-	// TODO: make this better
-	var err error
-	var content []byte
-	// FIX: this is not good design. A caller does not expect that the
-	// FIX: provdied data can be overwritten
-	if isInputFromPipe() {
-		GL.logger.Info().Msg("reading from pipe")
-		content, err = readFromStdintoByte()
-		if err != nil {
-			return err
-		}
-	} else {
-		content = data
+func writeToFile(r io.Reader, path string) error {
+	content, err := io.ReadAll(r)
+	if err != nil {
+		return err
 	}
 	exist, err := exists(path)
 	if err != nil {
