@@ -2,6 +2,15 @@
 
 [Latest release](https://github.com/allaman/go-cli-skeleton/releases/latest))
 
+## 0.5.0
+
+### Added
+
+- new subcommand for parsing directories
+  go-cli-skeleton dir
+  go-cli-skeleton dir -p /tmp
+  go-cli-skeleton dir -r -p /tmp
+
 ## 0.4.1
 
 ### Changed
