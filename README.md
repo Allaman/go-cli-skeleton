@@ -6,7 +6,7 @@ A skeleton/template for writing Go CLI applications.
 
 - global logging via [zerolog](https://github.com/rs/zerolog) (JSON and human friendly)
 - simple HTTP client via `net/http` package
-- parsing JSON dynamically via [gjson](https://github.com/tidwall/gjson) and via unmarshalling with `strcuts`
+- parsing JSON dynamically via [gjson](https://github.com/tidwall/gjson) and via unmarshalling with `structs`
 - reading a file
 - writing to a file
 - reading directory content (optional recursively)
