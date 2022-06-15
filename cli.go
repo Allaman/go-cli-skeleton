@@ -14,7 +14,8 @@ type CLI struct {
 		Read  readFileCmd  `cmd:"" help:"Read a file"`
 		Write writeFileCmd `cmd:"" help:"Write a file"`
 	} `cmd:"" help:"File operations"`
-	Parse      ParseCMD   `cmd:"" help:"GET query to poastman-echo and parsing the response"`
+	Dir        DirCMD     `cmd:"" help:"List all files in a directory (and sub directories)"`
+	Parse      ParseCMD   `cmd:"" help:"GET query to postman-echo and parsing the response"`
 	Version    VersionCmd `cmd:"" help:"Show version information"`
 	Debug      bool       `short:"d" help:"Enable debug output"`
 	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
@@ -67,6 +68,30 @@ type helloCmd struct {
 
 func (c *helloCmd) Run() error {
 	return sayHello(c.Password, c.Addr)
+}
+
+type DirCMD struct {
+	Path      string `short:"p" default:"." help:"Path to the directory to read all files"`
+	Recursive bool   `short:"r" default:"false" help:"Recursively travers all sub folders"`
+}
+
+func (c *DirCMD) Run() error {
+	return func() error {
+		files, err := readDir(c.Path, c.Recursive)
+		if err != nil {
+			return err
+		}
+		for _, elem := range files {
+			if !elem.IsDir && elem.Ending != "" {
+				fmt.Printf("FILE %s has ending %s\n", elem.BaseName, elem.Ending)
+			} else if elem.IsDir {
+				fmt.Printf("DIR %s\n", elem.BaseName)
+			} else {
+				fmt.Printf("FILE has no ending: %s\n", elem.BaseName)
+			}
+		}
+		return nil
+	}()
 }
 
 type ParseCMD struct{}

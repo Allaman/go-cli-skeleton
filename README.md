@@ -9,6 +9,7 @@ A skeleton/template for writing Go CLI applications.
 - parsing JSON dynamically via [gjson](https://github.com/tidwall/gjson) and via unmarshalling with `strcuts`
 - reading a file
 - writing to a file
+- reading directory content (optional recursively)
 - reading from stdin (e.g. a Linux pipe)
 - CLI commands, parameters and flags via [Kong](https://github.com/alecthomas/kong)
 - only main package
@@ -48,6 +49,9 @@ Commands:
   file write --path=STRING
     Write a file
 
+  dir
+    List all files in a directory (and sub directories)
+
   parse
     GET query to postman-echo and parsing the response
 
@@ -56,3 +60,9 @@ Commands:
 
 Run "go-cli-skeleton <command> --help" for more information on a command.
 ```
+
+## TODO
+
+- GlobalLog improvement
+- include [pterm](https://github.com/pterm/pterm)
+- parse yaml/json files
