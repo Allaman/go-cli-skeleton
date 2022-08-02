@@ -13,7 +13,7 @@ A skeleton/template for writing Go CLI applications.
 - reading from stdin (e.g. a Linux pipe)
 - CLI commands, parameters and flags via [Kong](https://github.com/alecthomas/kong)
 - only main package
-- [Goreleaser](https://goreleaser.com/) workflow for automatic multi platform binary releases and Dockerhub images (allaman/go-cli-skeleton:tag)
+- [Goreleaser](https://goreleaser.com/) workflow for automatic multi platform binary releases and Dockerhub images (allaman/go-cli-skeleton:latest or tag)
 
 ## What's not included
 
