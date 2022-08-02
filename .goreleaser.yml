@@ -33,3 +33,22 @@ release:
     ## Release Notes
     Please read the [RELEASE_NOTES](https://github.com/allaman/go-cli-skeleton/blob/master/RELEASE-NOTES.md) which contain among other things important information for who is upgrading from previous releases.
     ## Thanks!
+dockers:
+  - image_templates:
+      - "allaman/{{ .ProjectName }}:{{ .Version }}-amd64"
+    use: buildx
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--platform=linux/amd64"
+  - image_templates:
+      - "allaman/{{ .ProjectName }}:{{ .Version }}-arm64v8"
+    use: buildx
+    goarch: arm64
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--platform=linux/arm64/v8"
+docker_manifests:
+  - name_template: allaman/{{ .ProjectName }}:{{ .Version }}
+    image_templates:
+      - allaman/{{ .ProjectName }}:{{ .Version }}-amd64
+      - allaman/{{ .ProjectName }}:{{ .Version }}-arm64v8
