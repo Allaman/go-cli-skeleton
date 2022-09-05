@@ -18,7 +18,7 @@ type CLI struct {
 	Parse      ParseCMD   `cmd:"" help:"GET query to postman-echo and parsing the response"`
 	Version    VersionCmd `cmd:"" help:"Show version information"`
 	Debug      bool       `short:"d" help:"Enable debug output"`
-	JsonOutput bool       `short:"j" default:"false" help:"Log in json format"`
+	JSONOutput bool       `short:"j" default:"false" help:"Log in json format"`
 }
 
 type VersionCmd struct {

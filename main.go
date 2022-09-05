@@ -20,7 +20,7 @@ func main() {
 	if cli.Debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	}
-	if !cli.JsonOutput {
+	if !cli.JSONOutput {
 		*GL.logger = GL.logger.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	}
 	err := ctx.Run(&cli)
