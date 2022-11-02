@@ -15,7 +15,12 @@ var (
 )
 
 func get(path string) (*http.Response, error) {
-	resp, err := c.Get(fmt.Sprintf("%s%s", baseURL, path))
+	req, err := http.NewRequest("GET", path, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Add("Authorization", "foo")
+	resp, err := c.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +35,12 @@ func post(path string, body interface{}) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	resp, err := c.Post(fmt.Sprintf("%s%s", baseURL, path), "application/json", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s%s", baseURL, path), bytes.NewBuffer(jsonData))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := c.Do(req)
 	if err != nil {
 		return nil, err
 	}
