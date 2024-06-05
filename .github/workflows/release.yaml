@@ -33,7 +33,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
       # Build & Release binaries
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         if: success() && startsWith(github.ref, 'refs/tags/')
         with:
           version: latest
